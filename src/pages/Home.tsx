@@ -141,16 +141,16 @@ export default function Home() {
         canonical="https://www.kleinpeterhomeimprovements.com"
       />
 
-      {/* Hero Section - Carousel visible; on mobile form is below, on desktop form is right with glass effect */}
-      <section className="relative min-h-0 md:min-h-screen flex flex-col md:flex-row overflow-hidden">
-        {/* Full-screen background carousel */}
-        <div className="absolute inset-0 z-0 min-w-0 min-h-0">
+      {/* Hero Section - On mobile: images then form below. On desktop: carousel with form on right. */}
+      <section className="relative min-h-0 md:min-h-screen flex flex-col md:flex-row overflow-hidden w-full max-w-[100vw]">
+        {/* Carousel - images constrained to fit screen, no overflow */}
+        <div className="absolute inset-0 z-0 min-w-0 w-full max-w-full overflow-hidden bg-gray-800">
           {HERO_BACKGROUNDS.map((src, index) => (
             <img
               key={src}
               src={encodeURI(src)}
               alt=""
-              className="absolute inset-0 w-full h-full min-w-full min-h-full object-cover object-top sm:object-center transition-opacity duration-1000 ease-in-out"
+              className="absolute inset-0 w-full h-full max-w-full max-h-full min-w-0 object-contain md:object-cover object-top md:object-center transition-opacity duration-1000 ease-in-out"
               style={{
                 opacity: index === heroIndex ? 1 : 0,
                 zIndex: index === heroIndex ? 0 : -1,
@@ -163,8 +163,8 @@ export default function Home() {
         {/* Gradient overlay - stronger on right so form stays readable */}
         <div className="absolute inset-0 z-[1] bg-gradient-to-r from-transparent via-black/10 to-black/50 md:to-black/40 pointer-events-none" aria-hidden="true" />
 
-        {/* Mobile: carousel viewing area (no form on top) */}
-        <div className="relative z-10 min-h-[55vh] md:min-h-0 md:flex-1 md:min-h-screen w-full" aria-hidden="true" />
+        {/* Mobile: image area only (form is next in column, below) */}
+        <div className="relative z-10 min-h-[65vh] md:min-h-0 md:flex-1 md:min-h-screen w-full flex-shrink-0" aria-hidden="true" />
 
         {/* Form: below carousel on mobile, right side on desktop with glass style so image shows through */}
         <div className="relative z-10 w-full md:w-[420px] lg:w-[440px] md:flex-shrink-0 flex items-center justify-center md:justify-end min-h-0 px-4 py-6 md:py-8 md:pr-8 lg:pr-12">
