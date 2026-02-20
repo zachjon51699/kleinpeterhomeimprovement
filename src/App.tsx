@@ -43,7 +43,7 @@ const LoadingFallback = () => (
 function App() {
   return (
     <HelmetProvider>
-      <Router>
+      <Router basename={import.meta.env.BASE_URL}>
         <ScrollToTop />
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
