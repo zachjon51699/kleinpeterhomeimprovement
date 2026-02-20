@@ -3,6 +3,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Suspense, lazy } from 'react';
 import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop';
+import RedirectFrom404 from './components/RedirectFrom404';
 import Home from './pages/Home';
 
 // Lazy load all routes for code splitting and faster initial load
@@ -44,6 +45,7 @@ function App() {
   return (
     <HelmetProvider>
       <Router basename={import.meta.env.BASE_URL}>
+        <RedirectFrom404 />
         <ScrollToTop />
         <Suspense fallback={<LoadingFallback />}>
           <Routes>

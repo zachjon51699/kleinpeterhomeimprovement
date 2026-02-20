@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecting...</title>
+  <script>
+    (function() {
+      var base = '/kleinpeterhomeimprovement';
+      var path = location.pathname.replace(new RegExp('^' + base.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\/?'), '') || '';
+      path = path.replace(/\/$/, '');
+      if (path && path !== 'index.html') {
+        var redirect = path.startsWith('/') ? path : '/' + path;
+        location.replace(location.origin + base + '/?redirect=' + encodeURIComponent(redirect));
+      } else {
+        location.replace(location.origin + base + '/');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>
