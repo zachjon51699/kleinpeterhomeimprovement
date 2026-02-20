@@ -1,81 +1,50 @@
 import { useState } from 'react';
 import { X, ArrowLeft, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
+import { getImageCategories } from '../data/galleryCategories';
+
+// Display wording for each category (used for title and description)
+const CATEGORY_PROJECT_LABELS: Record<string, string> = {
+  Gutters: 'Gutter Installation',
+  Patios: 'Patio Installation',
+  Pergolas: 'Pergola Installation',
+  Remodeling: 'Remodeling',
+};
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
-  const projects = [
-    {
-      title: 'Residential Shingle Roof Replacement - Baton Rouge, LA',
-      description: 'Complete asphalt shingle roof replacement on traditional Louisiana home featuring hurricane-resistant materials.',
-      image: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800',
-      category: 'Residential',
-      location: 'Baton Rouge, LA'
-    },
-    {
-      title: 'Commercial Flat Roof Installation - New Orleans, LA',
-      description: 'TPO commercial roofing system installation on New Orleans business building with enhanced drainage.',
-      image: 'https://images.pexels.com/photos/1029604/pexels-photo-1029604.jpeg?auto=compress&cs=tinysrgb&w=800',
-      category: 'Commercial',
-      location: 'New Orleans, LA'
-    },
-    {
-      title: 'Storm Damage Repair - Covington, LA',
-      description: 'Hurricane damage restoration including emergency tarping and complete roof reconstruction.',
-      image: 'https://images.pexels.com/photos/1102915/pexels-photo-1102915.jpeg?auto=compress&cs=tinysrgb&w=800',
-      category: 'Storm Damage',
-      location: 'Covington, LA'
-    },
-    {
-      title: 'Fortified Roofing System - Hammond, LA',
-      description: 'IBHS Fortified roofing installation providing enhanced hurricane protection and insurance savings.',
-      image: 'https://images.pexels.com/photos/8293653/pexels-photo-8293653.jpeg?auto=compress&cs=tinysrgb&w=800',
-      category: 'Fortified',
-      location: 'Hammond, LA'
-    },
-    {
-      title: 'Metal Roofing Installation - Slidell, LA',
-      description: 'Standing seam metal roof installation offering superior durability for Louisiana weather.',
-      image: 'https://images.pexels.com/photos/5463575/pexels-photo-5463575.jpeg?auto=compress&cs=tinysrgb&w=800',
-      category: 'Residential',
-      location: 'Slidell, LA'
-    },
-    {
-      title: 'Tile Roof Restoration - Mandeville, LA',
-      description: 'Clay tile roof restoration preserving the architectural beauty of historic Louisiana home.',
-      image: 'https://images.pexels.com/photos/210617/pexels-photo-210617.jpeg?auto=compress&cs=tinysrgb&w=800',
-      category: 'Residential',
-      location: 'Mandeville, LA'
-    },
-    {
-      title: 'Emergency Storm Response - Gonzales, LA',
-      description: 'Rapid emergency response and temporary protection following severe Louisiana storm damage.',
-      image: 'https://images.pexels.com/photos/209296/pexels-photo-209296.jpeg?auto=compress&cs=tinysrgb&w=800',
-      category: 'Storm Damage',
-      location: 'Gonzales, LA'
-    },
-    {
-      title: 'Commercial Roof Maintenance - Baton Rouge, LA',
-      description: 'Preventive maintenance program for large commercial facility ensuring optimal roof performance.',
-      image: 'https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=800',
-      category: 'Commercial',
-      location: 'Baton Rouge, LA'
-    },
-    {
-      title: 'Residential Roof Inspection - New Orleans, LA',
-      description: 'Comprehensive roof inspection identifying potential issues before they become costly problems.',
-      image: 'https://images.pexels.com/photos/1029604/pexels-photo-1029604.jpeg?auto=compress&cs=tinysrgb&w=800',
-      category: 'Inspection',
-      location: 'New Orleans, LA'
-    }
-  ];
+  // Generate array of images: only those in galleryCategories (removed images are excluded)
+  const generateImageArray = () => {
+    const images = [];
+    const locations = ['Livingston Parish, LA', 'Ascension Parish, LA', 'East Baton Rouge Parish, LA', 'Baton Rouge, LA', 'Gonzales, LA', 'Prairieville, LA', 'Denham Springs, LA', 'Walker, LA'];
 
-  const categories = ['All', 'Residential', 'Commercial', 'Storm Damage', 'Fortified', 'Inspection'];
+    const imageCategories = getImageCategories();
+    const imageNumbers = Object.keys(imageCategories).map(Number).sort((a, b) => a - b);
+
+    imageNumbers.forEach((num, index) => {
+      const category = imageCategories[num];
+      const projectLabel = CATEGORY_PROJECT_LABELS[category] ?? category;
+      const location = locations[index % locations.length];
+      images.push({
+        title: `${projectLabel} - ${location}`,
+        description: `Professional ${projectLabel.toLowerCase()} completed in ${location}, showcasing quality craftsmanship and attention to detail.`,
+        image: `/image${num}.avif`,
+        category,
+        location
+      });
+    });
+
+    return images;
+  };
+
+  const projects = generateImageArray();
+
+  const categories = ['All', 'Patios', 'Pergolas', 'Gutters', 'Remodeling'];
   const [activeCategory, setActiveCategory] = useState('All');
 
-  const filteredProjects = activeCategory === 'All' 
-    ? projects 
+  const filteredProjects = activeCategory === 'All'
+    ? projects
     : projects.filter(project => project.category === activeCategory);
 
   const openModal = (index: number) => {
@@ -103,18 +72,19 @@ export default function Gallery() {
     <>
       <SEO
         title="Gallery"
-        description="View our completed roofing projects throughout Louisiana including residential roofing, commercial roofing, storm damage repairs, and Fortified roofing installations in Baton Rouge, New Orleans, Covington and surrounding areas."
-        keywords="roofing gallery Louisiana, completed roofing projects Baton Rouge, roofing photos New Orleans, before after roofing Covington, Louisiana roofing examples"
+        description="At Kleinpeter's Home Improvement & Maintenance, your job is our next challenge. View our project gallery — gutters, patios, pergolas, enclosures, decks, fence, paint, pressure washing across Louisiana."
+        keywords="home improvement gallery Louisiana, completed projects Livingston Parish, Ascension Parish, East Baton Rouge Parish"
+        canonical="https://www.kleinpeterhomeimprovements.com/gallery"
       />
 
       {/* Hero Section */}
-      <section className="bg-gray-800 text-white py-20">
+      <section className="bg-gray-700 text-white py-14">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Our Louisiana Roofing Projects
+            Our Home Improvement Project Gallery
           </h1>
           <p className="text-xl leading-relaxed max-w-3xl mx-auto">
-            Explore our portfolio of completed roofing projects throughout Louisiana. From residential roof replacements to commercial installations and emergency storm damage repairs, see the quality craftsmanship that One Roof delivers across Baton Rouge, New Orleans, Covington, and surrounding communities.
+            Explore our portfolio of completed home improvement projects throughout Louisiana. From gutters and patios to pergolas and decks, see the quality craftsmanship that Kleinpeter's Home Improvement delivers across Livingston Parish, Ascension Parish, East Baton Rouge Parish, and surrounding communities.
           </p>
         </div>
       </section>
@@ -122,6 +92,7 @@ export default function Gallery() {
       {/* Filter Tabs */}
       <section className="py-8 bg-gray-50">
         <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Filter by Service Type</h2>
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map((category) => (
               <button
@@ -129,7 +100,7 @@ export default function Gallery() {
                 onClick={() => setActiveCategory(category)}
                 className={`px-6 py-3 rounded-lg font-medium transition-colors ${
                   activeCategory === category
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-kleinpeter-600 text-white'
                     : 'bg-white text-gray-700 hover:bg-gray-100'
                 }`}
               >
@@ -143,64 +114,87 @@ export default function Gallery() {
       {/* Gallery Grid */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
-              <div 
-                key={index}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
-                onClick={() => openModal(index)}
-              >
-                <div className="relative group">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
-                    <span className="text-white font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      View Details
-                    </span>
+          {filteredProjects.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-600 text-lg">No projects found in this category.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredProjects.map((project, index) => (
+                <div 
+                  key={index}
+                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+                  onClick={() => openModal(index)}
+                >
+                  <div className="relative group">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                      onError={(e) => {
+                        console.error(`Failed to load image: ${project.image}`);
+                        (e.target as HTMLImageElement).src = '/image1.avif'; // Fallback
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
+                      <span className="text-white font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        View Details
+                      </span>
+                    </div>
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-kleinpeter-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        {project.category}
+                      </span>
+                    </div>
                   </div>
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {project.category}
-                    </span>
+                  <div className="p-6">
+                    <h3 className="text-lg font-bold text-gray-800 mb-2">{project.title}</h3>
+                    <p className="text-gray-600 mb-3">{project.description}</p>
+                    <div className="flex items-center text-sm text-kleinpeter-600">
+                      <span>{project.location}</span>
+                    </div>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">{project.title}</h3>
-                  <p className="text-gray-600 mb-3">{project.description}</p>
-                  <div className="flex items-center text-sm text-blue-600">
-                    <span>{project.location}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
       {/* Modal */}
       {selectedImage !== null && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
-          <div className="relative max-w-4xl w-full">
+        <div
+          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
+          onClick={closeModal}
+        >
+          <div
+            className="relative max-w-4xl w-full z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
+              type="button"
               onClick={closeModal}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 z-10"
+              className="absolute -top-2 -right-2 bg-white text-gray-800 rounded-full p-1 shadow-lg hover:bg-gray-100 z-20"
+              aria-label="Close"
             >
               <X className="w-8 h-8" />
             </button>
             
             <button
+              type="button"
               onClick={() => navigateImage('prev')}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-20"
+              aria-label="Previous image"
             >
               <ArrowLeft className="w-8 h-8" />
             </button>
             
             <button
+              type="button"
               onClick={() => navigateImage('next')}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-20"
+              aria-label="Next image"
             >
               <ArrowRight className="w-8 h-8" />
             </button>
@@ -210,13 +204,17 @@ export default function Gallery() {
                 src={filteredProjects[selectedImage].image}
                 alt={filteredProjects[selectedImage].title}
                 className="w-full h-96 object-cover"
+                onError={(e) => {
+                  console.error(`Failed to load image: ${filteredProjects[selectedImage].image}`);
+                  (e.target as HTMLImageElement).src = '/image1.avif'; // Fallback
+                }}
               />
               <div className="p-6">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                  <span className="bg-kleinpeter-600 text-white px-3 py-1 rounded-full text-sm font-medium">
                     {filteredProjects[selectedImage].category}
                   </span>
-                  <span className="text-blue-600 font-medium">
+                  <span className="text-kleinpeter-600 font-medium">
                     {filteredProjects[selectedImage].location}
                   </span>
                 </div>
@@ -225,6 +223,9 @@ export default function Gallery() {
                 </h3>
                 <p className="text-gray-600">
                   {filteredProjects[selectedImage].description}
+                </p>
+                <p className="text-gray-400 text-sm mt-2">
+                  Image #{filteredProjects[selectedImage].image.replace(/\D/g, '')}
                 </p>
               </div>
             </div>
@@ -240,56 +241,56 @@ export default function Gallery() {
               Proven Results Across Louisiana
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Over 15 years of protecting Louisiana homes and businesses
+              Quality home improvement services for Louisiana homes and businesses
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">5000+</div>
-              <div className="text-gray-700">Roofs Protected</div>
+              <div className="text-4xl font-bold text-kleinpeter-600 mb-2">1000+</div>
+              <div className="text-gray-700">Projects Completed</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">98%</div>
+              <div className="text-4xl font-bold text-kleinpeter-600 mb-2">98%</div>
               <div className="text-gray-700">Customer Satisfaction</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">24/7</div>
-              <div className="text-gray-700">Emergency Service</div>
+              <div className="text-4xl font-bold text-kleinpeter-600 mb-2">38</div>
+              <div className="text-gray-700">Gallery Projects</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">15+</div>
-              <div className="text-gray-700">Years Experience</div>
+              <div className="text-4xl font-bold text-kleinpeter-600 mb-2">4</div>
+              <div className="text-gray-700">Service Types</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-blue-600 text-white">
+      <section className="py-14 bg-gray-700 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Join Our Gallery of Satisfied Louisiana Customers?
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Contact One Roof today for your free estimate and discover why thousands of Louisiana property owners trust us with their roofing needs.
+            Contact Kleinpeter's Home Improvement today for your free estimate and discover why Louisiana property owners trust us with their home improvement needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="tel:+15551234567"
-              className="bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors font-semibold flex items-center justify-center space-x-2"
+              href="tel:+12259759845"
+              className="bg-white text-kleinpeter-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors font-semibold flex items-center justify-center space-x-2"
             >
-              <span>Call (555) 123-ROOF</span>
+              <span>Call (225) 975-9845</span>
             </a>
             <a 
               href="/contact"
-              className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white hover:text-blue-600 transition-colors font-semibold"
+              className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white hover:text-kleinpeter-600 transition-colors font-semibold"
             >
               Get Free Estimate
             </a>
           </div>
           <p className="text-lg mt-6">
-            Serving Baton Rouge, New Orleans, Covington, Gonzales, Hammond, Slidell, Mandeville, and all Louisiana communities.
+            Serving Livingston Parish, Ascension Parish, East Baton Rouge Parish, and all Louisiana communities.
           </p>
         </div>
       </section>

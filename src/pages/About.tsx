@@ -6,9 +6,10 @@ export default function About() {
   return (
     <>
       <SEO
-        title="About Us"
-        description="Learn about One Roof - Louisiana's premier roofing contractor with over 15 years of experience serving Baton Rouge, New Orleans, Covington and surrounding areas."
-        keywords="Louisiana roofing contractor, roofing company Baton Rouge, roofing services New Orleans, about One Roof"
+        title="About"
+        description="Where your home improvement dreams become our next challenge. Learn about Kleinpeter's Home Improvement & Home Maintenance, LLC — Louisiana contractor for gutters, patios, pergolas, enclosures, decks, fence, paint, and pressure washing."
+        keywords="about Kleinpeter Home Improvement, Louisiana home improvement contractor, Livingston Parish Ascension East Baton Rouge"
+        canonical="https://www.kleinpeterhomeimprovements.com/about"
       />
 
       {/* Hero Section */}
@@ -46,11 +47,11 @@ export default function About() {
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">15+</div>
+                  <div className="text-3xl font-bold text-kleinpeter-600 mb-2">15+</div>
                   <div className="text-gray-600">Years Experience</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">5000+</div>
+                  <div className="text-3xl font-bold text-kleinpeter-600 mb-2">5000+</div>
                   <div className="text-gray-600">Roofs Protected</div>
                 </div>
               </div>
@@ -60,6 +61,7 @@ export default function About() {
                 src="https://images.pexels.com/photos/5463575/pexels-photo-5463575.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="One Roof team working on residential roof repair in Baton Rouge Louisiana"
                 className="rounded-lg shadow-lg"
+                loading="lazy"
               />
             </div>
           </div>
@@ -80,8 +82,8 @@ export default function About() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Shield className="w-8 h-8 text-blue-600" />
+              <div className="bg-kleinpeter-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <Shield className="w-8 h-8 text-kleinpeter-600" />
               </div>
               <h3 className="text-xl font-bold text-gray-800 mb-3">Quality First</h3>
               <p className="text-gray-600">
@@ -90,8 +92,8 @@ export default function About() {
             </div>
 
             <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-blue-600" />
+              <div className="bg-kleinpeter-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <Users className="w-8 h-8 text-kleinpeter-600" />
               </div>
               <h3 className="text-xl font-bold text-gray-800 mb-3">Customer Focus</h3>
               <p className="text-gray-600">
@@ -100,8 +102,8 @@ export default function About() {
             </div>
 
             <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Award className="w-8 h-8 text-blue-600" />
+              <div className="bg-kleinpeter-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <Award className="w-8 h-8 text-kleinpeter-600" />
               </div>
               <h3 className="text-xl font-bold text-gray-800 mb-3">Excellence</h3>
               <p className="text-gray-600">
@@ -110,8 +112,8 @@ export default function About() {
             </div>
 
             <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Clock className="w-8 h-8 text-blue-600" />
+              <div className="bg-kleinpeter-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <Clock className="w-8 h-8 text-kleinpeter-600" />
               </div>
               <h3 className="text-xl font-bold text-gray-800 mb-3">Reliability</h3>
               <p className="text-gray-600">
@@ -143,21 +145,21 @@ export default function About() {
               
               <div className="space-y-4 mb-6">
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mt-3"></div>
+                  <div className="w-2 h-2 bg-kleinpeter-600 rounded-full mt-3"></div>
                   <div>
                     <h4 className="font-semibold text-gray-800">Storm Damage Specialists</h4>
                     <p className="text-gray-600">Expert storm damage assessment and repair throughout Louisiana</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mt-3"></div>
+                  <div className="w-2 h-2 bg-kleinpeter-600 rounded-full mt-3"></div>
                   <div>
                     <h4 className="font-semibold text-gray-800">Fortified Roofing Certified</h4>
                     <p className="text-gray-600">Official Fortified roofing installer for hurricane-resistant systems</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mt-3"></div>
+                  <div className="w-2 h-2 bg-kleinpeter-600 rounded-full mt-3"></div>
                   <div>
                     <h4 className="font-semibold text-gray-800">Insurance Claim Assistance</h4>
                     <p className="text-gray-600">Complete support through the insurance claim process</p>
@@ -174,7 +176,7 @@ export default function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-blue-600 text-white">
+      <section className="py-14 bg-gray-700 text-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>

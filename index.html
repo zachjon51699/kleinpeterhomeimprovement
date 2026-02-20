@@ -4,10 +4,25 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>One Roof Louisiana SEO Website</title>
+    <title>Kleinpeter's Home Improvement & Home Maintenance, LLC</title>
+<meta name="description" content="At Kleinpeter's Home Improvement & Maintenance, your job is our next challenge. We specialize in gutters, patios, screen & glass room enclosures, fences, decks, paint, and pressure washing across Louisiana." />
+    
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://images.pexels.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="dns-prefetch" href="https://images.pexels.com" />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
   </head>
   <body>
     <div id="root"></div>
+    <!-- Hidden form for Netlify Forms detection at build (must match React form name and fields) -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

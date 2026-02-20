@@ -4,46 +4,44 @@ import SEO from '../components/SEO';
 
 export default function Contact() {
   const serviceAreas = [
-    { city: 'Baton Rouge', state: 'LA', description: 'Serving the capital city and surrounding parishes with professional roofing services.' },
-    { city: 'New Orleans', state: 'LA', description: 'Expert roofing solutions for the historic city and metro area.' },
-    { city: 'Covington', state: 'LA', description: 'Quality roofing services for Covington and St. Tammany Parish.' },
-    { city: 'Gonzales', state: 'LA', description: 'Professional roofing contractor serving Gonzales and Ascension Parish.' },
-    { city: 'Hammond', state: 'LA', description: 'Reliable roofing services throughout Hammond and Tangipahoa Parish.' },
-    { city: 'Slidell', state: 'LA', description: 'Comprehensive roofing solutions for Slidell and surrounding areas.' },
-    { city: 'Mandeville', state: 'LA', description: 'Expert roofing services for Mandeville and the North Shore.' }
+    { city: 'Livingston Parish', state: 'LA', description: 'Serving Livingston Parish with professional home improvement services.' },
+    { city: 'Ascension Parish', state: 'LA', description: 'Expert home improvement solutions for Ascension Parish.' },
+    { city: 'East Baton Rouge Parish', state: 'LA', description: 'Quality home improvement services for East Baton Rouge Parish.' }
   ];
 
   return (
     <>
       <SEO
-        title="Contact Us"
-        description="Contact One Roof for professional roofing services in Louisiana. Serving Baton Rouge, New Orleans, Covington and surrounding areas. Call (555) 123-ROOF for your free roofing estimate."
-        keywords="contact roofing contractor Louisiana, roofing estimate Baton Rouge, roofing quote New Orleans, contact One Roof Covington, Louisiana roofing company phone"
+        title="Contact"
+        description="Contact us today for a free quote from Kleinpeter's Home Improvement. Louisiana gutters, patios, pergolas, enclosures, decks, fence, paint, pressure washing. Call (225) 975-9845. Licensed contractor."
+        keywords="contact home improvement contractor Louisiana, home improvement estimate Livingston Parish, free quote Ascension East Baton Rouge"
+        canonical="https://www.kleinpeterhomeimprovements.com/contact"
       />
 
       {/* Hero Section */}
-      <section className="bg-gray-800 text-white py-20">
+      <section className="bg-gray-900 text-white py-10 lg:py-14">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Contact Louisiana's Most Trusted Roofing Company
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+              Contact Kleinpeter's<br />
+              <span className="text-white">Home Improvement</span>
             </h1>
-            <p className="text-xl leading-relaxed mb-8">
-              Ready to protect your Louisiana property? Contact One Roof today for your free estimate. We serve Baton Rouge, New Orleans, Covington, and surrounding communities with expert roofing solutions.
+            <p className="text-xl md:text-2xl leading-relaxed mb-12 max-w-3xl mx-auto">
+              Ready to improve your Louisiana home? Contact Kleinpeter's Home Improvement today for your free estimate. We serve Livingston Parish, Ascension Parish, East Baton Rouge Parish, and surrounding communities with expert home improvement solutions.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <a 
-                href="tel:+15551234567"
-                className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold flex items-center justify-center space-x-2"
+                href="tel:+12259759845"
+                className="bg-kleinpeter-600 text-white px-10 py-5 rounded-lg hover:bg-kleinpeter-700 transition-all duration-300 font-bold text-xl flex items-center justify-center space-x-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               >
-                <Phone className="w-5 h-5" />
-                <span>(555) 123-ROOF</span>
+                <Phone className="w-6 h-6" />
+                <span>(225) 975-9845</span>
               </a>
               <a 
-                href="mailto:info@oneroof.com"
-                className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white hover:text-gray-800 transition-colors font-semibold flex items-center justify-center space-x-2"
+                href="mailto:kleinpeter.homes@gmail.com"
+                className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300 font-bold text-xl flex items-center justify-center space-x-3"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-6 h-6" />
                 <span>Email Us</span>
               </a>
             </div>
@@ -58,8 +56,8 @@ export default function Contact() {
             {/* Contact Form */}
             <div>
               <ContactForm 
-                title="Get Your Free Louisiana Roofing Estimate"
-                subtitle="Fill out the form below and we'll contact you within 24 hours to schedule your free roofing assessment."
+                title="Get Your Free Louisiana Home Improvement Estimate"
+                subtitle="Fill out the form below and we'll contact you within 24 hours to schedule your free estimate."
               />
             </div>
 
@@ -69,45 +67,45 @@ export default function Contact() {
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="bg-blue-100 p-3 rounded-lg">
-                    <Phone className="w-6 h-6 text-blue-600" />
+                  <div className="bg-kleinpeter-100 p-3 rounded-lg">
+                    <Phone className="w-6 h-6 text-kleinpeter-600" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800 mb-1">Phone</h3>
-                    <a href="tel:+15551234567" className="text-blue-600 hover:text-blue-700 font-medium">
-                      (555) 123-ROOF
+                    <a href="tel:+12259759845" className="text-kleinpeter-600 hover:text-kleinpeter-700 font-medium">
+                      (225) 975-9845
                     </a>
-                    <p className="text-gray-600 text-sm mt-1">Available 24/7 for emergencies</p>
+                    <p className="text-gray-600 text-sm mt-1">Call for a free estimate</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-blue-100 p-3 rounded-lg">
-                    <Mail className="w-6 h-6 text-blue-600" />
+                  <div className="bg-kleinpeter-100 p-3 rounded-lg">
+                    <Mail className="w-6 h-6 text-kleinpeter-600" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800 mb-1">Email</h3>
-                    <a href="mailto:info@oneroof.com" className="text-blue-600 hover:text-blue-700 font-medium">
-                      info@oneroof.com
+                    <a href="mailto:kleinpeter.homes@gmail.com" className="text-kleinpeter-600 hover:text-kleinpeter-700 font-medium">
+                      kleinpeter.homes@gmail.com
                     </a>
                     <p className="text-gray-600 text-sm mt-1">We respond within 4 hours</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-blue-100 p-3 rounded-lg">
-                    <MapPin className="w-6 h-6 text-blue-600" />
+                  <div className="bg-kleinpeter-100 p-3 rounded-lg">
+                    <MapPin className="w-6 h-6 text-kleinpeter-600" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800 mb-1">Service Area</h3>
                     <p className="text-gray-700">Serving Louisiana</p>
-                    <p className="text-gray-600 text-sm mt-1">Baton Rouge, New Orleans, Covington, and surrounding areas</p>
+                    <p className="text-gray-600 text-sm mt-1">Livingston Parish, Ascension Parish, East Baton Rouge Parish, and surrounding areas</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-blue-100 p-3 rounded-lg">
-                    <Clock className="w-6 h-6 text-blue-600" />
+                  <div className="bg-kleinpeter-100 p-3 rounded-lg">
+                    <Clock className="w-6 h-6 text-kleinpeter-600" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800 mb-1">Business Hours</h3>
@@ -122,9 +120,9 @@ export default function Contact() {
 
               {/* Emergency Notice */}
               <div className="mt-8 bg-red-50 border-l-4 border-red-600 p-4 rounded-r-lg">
-                <h4 className="font-bold text-red-800 mb-2">Emergency Service Available</h4>
+                <h4 className="font-bold text-red-800 mb-2">Free Estimates Available</h4>
                 <p className="text-red-700 text-sm">
-                  Storm damage doesn't wait for business hours. Call (555) 123-ROOF for 24/7 emergency roofing services throughout Louisiana.
+                  Contact us today for your free home improvement estimate. Call (225) 975-9845 or email kleinpeter.homes@gmail.com
                 </p>
               </div>
             </div>
@@ -140,7 +138,7 @@ export default function Contact() {
               Louisiana Service Areas
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Professional roofing services throughout Louisiana. We're proud to serve these communities and surrounding areas.
+              Professional home improvement services throughout Louisiana. We're proud to serve these communities and surrounding areas.
             </p>
           </div>
 
@@ -148,7 +146,7 @@ export default function Contact() {
             {serviceAreas.map((area, index) => (
               <div key={index} className="bg-white p-6 rounded-lg shadow-md">
                 <div className="flex items-center space-x-2 mb-3">
-                  <MapPin className="w-5 h-5 text-blue-600" />
+                  <MapPin className="w-5 h-5 text-kleinpeter-600" />
                   <h3 className="text-lg font-bold text-gray-800">{area.city}, {area.state}</h3>
                 </div>
                 <p className="text-gray-600">{area.description}</p>
@@ -161,11 +159,11 @@ export default function Contact() {
               Don't see your Louisiana community listed? Contact us to confirm service availability in your area.
             </p>
             <a 
-              href="tel:+15551234567"
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold inline-flex items-center space-x-2"
+              href="tel:+12259759845"
+              className="bg-kleinpeter-600 text-white px-8 py-3 rounded-lg hover:bg-kleinpeter-700 transition-colors font-semibold inline-flex items-center space-x-2"
             >
               <Phone className="w-5 h-5" />
-              <span>Call (555) 123-ROOF</span>
+              <span>Call (225) 975-9845</span>
             </a>
           </div>
         </div>
@@ -179,40 +177,45 @@ export default function Contact() {
               Serving Louisiana Communities
             </h2>
             <p className="text-xl text-gray-600">
-              Centrally located to serve Louisiana from Baton Rouge to New Orleans
+              Serving Livingston Parish, Ascension Parish, and East Baton Rouge Parish
             </p>
           </div>
           
-          <div className="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
-            <div className="text-center text-gray-600">
-              <MapPin className="w-16 h-16 mx-auto mb-4" />
-              <p className="text-lg font-semibold">Louisiana Service Area Map</p>
-              <p className="text-sm">Interactive map showing our service coverage</p>
-            </div>
+          <div className="rounded-lg overflow-hidden shadow-lg">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d234526.68278865785!2d-90.34128565!3d30.217525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8620a454b2118265%3A0x6865551163924861!2sBaton%20Rouge%2C%20LA!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+              width="100%"
+              height="400"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Kleinpeter's Home Improvement Service Area - Louisiana"
+            ></iframe>
           </div>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 bg-blue-600 text-white">
+      <section className="py-14 bg-gray-700 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Get Started?
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Don't wait for the next storm season. Contact One Roof today for your free roofing estimate and discover why Louisiana property owners trust us to protect their most valuable investment.
+            Contact Kleinpeter's Home Improvement today for your free estimate and discover why Louisiana homeowners trust us to improve their homes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="tel:+15551234567"
-              className="bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors font-bold text-lg inline-flex items-center justify-center space-x-2"
+              href="tel:+12259759845"
+              className="bg-white text-kleinpeter-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors font-bold text-lg inline-flex items-center justify-center space-x-2"
             >
               <Phone className="w-6 h-6" />
-              <span>Call (555) 123-ROOF</span>
+              <span>Call (225) 975-9845</span>
             </a>
             <a 
-              href="mailto:info@oneroof.com"
-              className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white hover:text-blue-600 transition-colors font-bold text-lg inline-flex items-center justify-center space-x-2"
+              href="mailto:kleinpeter.homes@gmail.com"
+              className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white hover:text-kleinpeter-600 transition-colors font-bold text-lg inline-flex items-center justify-center space-x-2"
             >
               <Mail className="w-6 h-6" />
               <span>Email for Quote</span>

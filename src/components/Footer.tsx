@@ -2,61 +2,66 @@ import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+  
   const serviceAreas = [
-    'Baton Rouge, LA',
-    'New Orleans, LA',
-    'Covington, LA',
-    'Gonzales, LA',
-    'Hammond, LA',
-    'Slidell, LA',
-    'Mandeville, LA',
+    { name: 'All Service Areas', path: '/locations' },
+    { name: 'Baton Rouge, LA', path: '/locations/baton-rouge' },
+    { name: 'New Orleans, LA', path: '/locations/new-orleans' },
+    { name: 'Covington, LA', path: '/locations/covington' },
+    { name: 'Gonzales, LA', path: '/locations/gonzales' },
+    { name: 'Prairieville, LA', path: '/locations/prairieville' },
+    { name: 'Hammond, LA', path: '/locations/hammond' },
+    { name: 'Slidell, LA', path: '/locations/slidell' },
+    { name: 'Mandeville, LA', path: '/locations/mandeville' },
   ];
 
   const services = [
-    { path: '/residential', label: 'Residential Roofing' },
-    { path: '/commercial', label: 'Commercial Roofing' },
-    { path: '/fortified', label: 'Fortified Roofing' },
-    { path: '/storm-damage', label: 'Storm Damage Repair' },
-    { path: '/inspections', label: 'Roof Inspections' },
+    { path: '/gutters', label: 'Gutter Installation' },
+    { path: '/patios', label: 'Patio Installation' },
+    { path: '/pergolas', label: 'Pergola Installation' },
+    { path: '/screened-enclosures', label: 'Screened Enclosure Installation' },
+    { path: '/pressure-washing', label: 'Pressure Washing' },
+    { path: '/fence', label: 'Fence Installation' },
+    { path: '/paint', label: 'Painting Services' },
+    { path: '/decks', label: 'Deck Installation' },
   ];
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-white text-black">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">OR</span>
-              </div>
-              <div>
-                <div className="text-xl font-bold">One Roof</div>
-                <div className="text-sm text-gray-400">Louisiana Roofing Experts</div>
-              </div>
+            <div className="flex items-center space-x-3 mb-4">
+              <img 
+                src="/kleinpeterlogo.png" 
+                alt="Kleinpeter's Home Improvement Logo" 
+                className="h-16 w-auto"
+              />
             </div>
-            <p className="text-gray-400 mb-4">
-              Providing reliable, long-lasting roofing solutions that protect homes and businesses across Louisiana.
+            <p className="text-gray-700 mb-4">
+              Providing reliable, long-lasting home improvement solutions that protect and enhance homes across Louisiana.
             </p>
             <div className="space-y-2">
-              <a href="tel:+15551234567" className="flex items-center space-x-2 text-blue-400 hover:text-blue-300">
+              <a href="tel:+12259759845" className="flex items-center space-x-2 text-black hover:text-gray-700">
                 <Phone className="w-4 h-4" />
-                <span>(555) 123-ROOF</span>
+                <span>(225) 975-9845</span>
               </a>
-              <a href="mailto:info@oneroof.com" className="flex items-center space-x-2 text-gray-400 hover:text-white">
+              <a href="mailto:kleinpeter.homes@gmail.com" className="flex items-center space-x-2 text-gray-700 hover:text-black">
                 <Mail className="w-4 h-4" />
-                <span>info@oneroof.com</span>
+                <span>kleinpeter.homes@gmail.com</span>
               </a>
             </div>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Our Services</h3>
+            <h3 className="text-lg font-semibold mb-4 text-black">Our Services</h3>
             <ul className="space-y-2">
               {services.map((service) => (
                 <li key={service.path}>
                   <Link
                     to={service.path}
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="text-gray-700 hover:text-black transition-colors"
                   >
                     {service.label}
                   </Link>
@@ -66,40 +71,41 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Service Areas</h3>
+            <h3 className="text-lg font-semibold mb-4 text-black">Service Areas</h3>
             <ul className="space-y-2">
               {serviceAreas.map((area) => (
-                <li key={area} className="text-gray-400 flex items-center space-x-2">
-                  <MapPin className="w-3 h-3" />
-                  <span>{area}</span>
+                <li key={area.name}>
+                  <Link
+                    to={area.path}
+                    className="text-gray-700 hover:text-black transition-colors flex items-center space-x-2"
+                  >
+                    <MapPin className="w-3 h-3" />
+                    <span>{area.name}</span>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Business Hours</h3>
-            <div className="space-y-2 text-gray-400">
+            <h3 className="text-lg font-semibold mb-4 text-black">Business Hours</h3>
+            <div className="space-y-2 text-gray-700">
               <div className="flex items-center space-x-2">
                 <Clock className="w-4 h-4" />
-                <span>Mon-Fri: 7AM-6PM</span>
+                <span>Monday: 7:00AM – 5:00PM</span>
               </div>
-              <div className="ml-6">Saturday: 8AM-4PM</div>
-              <div className="ml-6">Sunday: Emergency Only</div>
-            </div>
-            <div className="mt-4">
-              <Link
-                to="/contact"
-                className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
-              >
-                Get Free Estimate
-              </Link>
+              <div className="ml-6">Tuesday: 7:00AM – 5:00PM</div>
+              <div className="ml-6">Wednesday: 7:00AM – 5:00PM</div>
+              <div className="ml-6">Thursday: 7:00AM – 5:00PM</div>
+              <div className="ml-6">Friday: 7:00AM – 5:00PM</div>
+              <div className="ml-6">Saturday: 8:00AM – 4:00PM</div>
+              <div className="ml-6">Sunday: Closed</div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 One Roof. All rights reserved. Licensed & Insured Louisiana Roofing Contractor.</p>
+        <div className="border-t border-gray-200 mt-8 pt-8 text-center text-gray-700">
+          <p>© {currentYear} Kleinpeter&apos;s Home Improvement &amp; Home Maintenance, LLC. All rights reserved. Licensed &amp; Insured Louisiana Contractor.</p>
         </div>
       </div>
     </footer>

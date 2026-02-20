@@ -1,3 +1,5 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Main color: Tailwind blue-600 (bg-blue-600 / text-blue-600) via kleinpeter theme in tailwind.config.js */

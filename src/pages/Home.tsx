@@ -1,54 +1,134 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Users, Award, Clock, Phone, Star, ArrowRight } from 'lucide-react';
+import { Shield, Award, Clock, Phone, Star, ArrowRight, MapPin, DollarSign, Wrench, Building, Zap, Droplets, Paintbrush, CloudRain, LayoutGrid, Trees, Fence, Layers } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import SEO from '../components/SEO';
 
+const HERO_BACKGROUNDS = [
+  '/Main Background Image 1.avif',
+  '/Main Background Image 2.avif',
+  '/Main Background Image 3.avif',
+  '/Main Background Image 4.avif'
+];
+
 export default function Home() {
+  const [heroIndex, setHeroIndex] = useState(0);
+
+  useEffect(() => {
+    if (HERO_BACKGROUNDS.length <= 1) return;
+    const interval = setInterval(() => {
+      setHeroIndex((i) => (i + 1) % HERO_BACKGROUNDS.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
   const services = [
     {
-      title: 'Residential Roofing',
-      description: 'Complete residential roofing services including repairs, replacements, and new installations.',
-      icon: Shield,
-      link: '/residential'
+      title: 'Gutter Installation',
+      description: 'Professional gutter installation, repair, and cleaning services to protect your Louisiana home.',
+      icon: CloudRain,
+      link: '/gutters'
     },
     {
-      title: 'Commercial Roofing',
-      description: 'Professional commercial roofing solutions for businesses across Louisiana.',
-      icon: Users,
-      link: '/commercial'
+      title: 'Patio Installation',
+      description: 'Transform your outdoor space with professional patio installation and maintenance.',
+      icon: LayoutGrid,
+      link: '/patios'
     },
     {
-      title: 'Storm Damage Repair',
-      description: '24/7 emergency storm damage repair with insurance claim assistance.',
-      icon: Clock,
-      link: '/storm-damage'
+      title: 'Pergola Installation',
+      description: 'Elevate your outdoor space with beautifully crafted pergolas designed for shade and style.',
+      icon: Trees,
+      link: '/pergolas'
     },
     {
-      title: 'Fortified Roofing',
-      description: 'Hurricane-resistant roofing systems that can save you up to 35% on insurance.',
-      icon: Award,
-      link: '/fortified'
+      title: 'Screened Enclosure Installation',
+      description: 'Transform your living space with custom screen and glass room enclosures.',
+      icon: Building,
+      link: '/screened-enclosures'
+    },
+    {
+      title: 'Pressure Washing',
+      description: 'Professional pressure washing services to restore and maintain your Louisiana property\'s appearance.',
+      icon: Droplets,
+      link: '/pressure-washing'
+    },
+    {
+      title: 'Fence Installation',
+      description: 'Secure and beautify your property with professional fence installation, repair, and maintenance.',
+      icon: Fence,
+      link: '/fence'
+    },
+    {
+      title: 'Painting Services',
+      description: 'Transform and protect your Louisiana home with professional interior and exterior painting.',
+      icon: Paintbrush,
+      link: '/paint'
+    },
+    {
+      title: 'Deck Installation',
+      description: 'Enhance your outdoor living space with professional deck installation, repair, and maintenance.',
+      icon: Layers,
+      link: '/decks'
     }
   ];
 
-  const testimonials = [
+  const testimonials: { name: string; location: string; date: string; text: string; rating: number; showReviewButton: boolean }[] = [
     {
-      name: 'Sarah Johnson',
-      location: 'Baton Rouge, LA',
-      text: 'One Roof did an amazing job replacing our storm-damaged roof. Professional, fast, and the quality is outstanding.',
-      rating: 5
+      name: 'Dee Schneider',
+      location: 'LA',
+      date: 'July 2024',
+      text: 'The crew was on time , very knowledgeable, and couteous during every moment of my repair. They went above and beyond and the price was very fair. I Will use Kieinpeter\'s again!',
+      rating: 5,
+      showReviewButton: false
     },
     {
-      name: 'Mike Chen',
-      location: 'New Orleans, LA',
-      text: 'Their fortified roofing system saved us thousands on insurance. Highly recommend One Roof!',
-      rating: 5
+      name: 'Jeffrey Marino',
+      location: 'LA',
+      date: 'July 2024',
+      text: 'Excellent repairs and gutters to prevent it from happening again.',
+      rating: 5,
+      showReviewButton: true
     },
     {
-      name: 'Jennifer Davis',
-      location: 'Covington, LA',
-      text: 'From inspection to completion, One Roof was professional and transparent. Great experience!',
-      rating: 5
+      name: 'Codi Blacklock',
+      location: 'LA',
+      date: 'July 2024',
+      text: 'Joey did an amazing job and was very professional and resonsive. I will definitely refer him and use him on other projects in the future.',
+      rating: 5,
+      showReviewButton: false
+    }
+  ];
+
+  const serviceAreas = [
+    'Baton Rouge', 'New Orleans', 'Covington', 'Gonzales', 
+    'Hammond', 'Slidell', 'Mandeville'
+  ];
+
+  const whyChooseUs = [
+    {
+      title: 'Licensed & Insured',
+      description: 'Fully licensed Louisiana roofing contractor with comprehensive insurance coverage for your peace of mind.',
+      icon: Shield
+    },
+    {
+      title: '24/7 Emergency Service',
+      description: 'Storm damage doesn\'t wait - neither do we. Emergency roofing services available across our Louisiana service area.',
+      icon: Clock
+    },
+    {
+      title: 'Insurance Claim Assistance',
+      description: 'We work directly with your insurance company to maximize your claim and minimize your out-of-pocket costs.',
+      icon: DollarSign
+    },
+    {
+      title: '15+ Years Experience',
+      description: 'Over 15 years of experience protecting Louisiana homes from severe weather with thousands of satisfied customers.',
+      icon: Star
+    },
+    {
+      title: 'Quality Workmanship',
+      description: 'We use only the highest quality materials and employ skilled craftsmen who take pride in their work.',
+      icon: Wrench
     }
   ];
 
@@ -56,67 +136,123 @@ export default function Home() {
     <>
       <SEO
         title="Home"
-        description="One Roof - Louisiana's premier roofing contractor serving Baton Rouge, New Orleans, Covington and surrounding areas. Expert roof repair, replacement, storm damage repair, and fortified roofing solutions."
-        keywords="Louisiana roofing company, roof repair Baton Rouge, roof replacement New Orleans, roofing contractor Covington LA, storm damage repair Louisiana, fortified roofing"
+        description="At Kleinpeter's Home Improvement & Maintenance, your job is our next challenge. We specialize in gutter, patios, screen & glass room enclosures, fences, decks, paint, and pressure washing. Licensed contractor serving Livingston Parish, Ascension Parish, East Baton Rouge Parish and surrounding Louisiana."
+        keywords="Louisiana home improvement contractor, gutters Livingston Parish, patios Ascension Parish, pergolas East Baton Rouge, screened enclosures Louisiana, decks Louisiana, fence installation, painting services, pressure washing"
+        canonical="https://www.kleinpeterhomeimprovements.com"
       />
 
-      {/* Hero Section */}
-      <section 
-        className="relative bg-cover bg-center bg-gray-800 text-white py-24"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://images.pexels.com/photos/209296/pexels-photo-209296.jpeg?auto=compress&cs=tinysrgb&w=1920")'
-        }}
-      >
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Louisiana's Most Trusted<br />
-            <span className="text-blue-400">Roofing Company</span>
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Protecting homes and businesses across Baton Rouge, New Orleans, Covington, and surrounding Louisiana communities with reliable, long-lasting roofing solutions.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link 
-              to="/contact"
-              className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors font-bold text-lg flex items-center space-x-2"
-            >
-              <span>Get Free Estimate</span>
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <a 
-              href="tel:+15551234567"
-              className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-gray-800 transition-colors font-bold text-lg flex items-center space-x-2"
-            >
-              <Phone className="w-5 h-5" />
-              <span>(555) 123-ROOF</span>
-            </a>
-          </div>
+      {/* Hero Section - Full-screen carousel behind everything, form on right */}
+      <section className="relative min-h-screen flex flex-col md:flex-row overflow-hidden">
+        {/* Full-screen background carousel (behind both left content and form) */}
+        <div className="absolute inset-0 z-0">
+          {HERO_BACKGROUNDS.map((src, index) => (
+            <img
+              key={src}
+              src={encodeURI(src)}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
+              style={{
+                opacity: index === heroIndex ? 1 : 0,
+                zIndex: index === heroIndex ? 0 : -1,
+                filter: 'brightness(1.08)'
+              }}
+              aria-hidden={index !== heroIndex}
+            />
+          ))}
+        </div>
+        {/* Light overlay */}
+        <div className="absolute inset-0 z-[1] bg-black/20 pointer-events-none" aria-hidden="true" />
+
+        {/* Left side - space for layout (carousel shows through) */}
+        <div className="flex-1 relative z-10 min-h-screen" />
+
+        {/* Right Side - Contact Form (on top of carousel) */}
+        <div className="w-full md:w-1/2 lg:w-2/5 relative z-10 flex items-center justify-start min-h-screen px-4">
+            <div className="bg-gray-300 rounded-3xl p-8 w-full max-w-lg shadow-2xl">
+              <h2 className="text-xl font-bold text-black text-center mb-6">
+                Kleinpeter Home Improvement & Home Maintenance
+              </h2>
+              {/* Form */}
+              <form className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-black mb-2">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Full Name"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-black mb-2">
+                      Phone <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      placeholder="Phone"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-black mb-2">
+                    Email <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-black mb-2">
+                    Short message about your needs <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    rows={4}
+                    placeholder="**Your message goes straight to my phone, I'll get back to you as soon as I'm available**"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-900 transition-colors font-semibold mt-4"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="py-16 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Complete Roofing Services Across Louisiana
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+              Complete Home Improvement Services Across Louisiana
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From routine repairs to complete roof replacements and fortified hurricane protection, we provide comprehensive roofing solutions for residential and commercial properties.
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              From gutters and patios to pergolas and screened enclosures, we provide comprehensive home improvement solutions for properties throughout Livingston, Ascension, and East Baton Rouge Parishes.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow border">
-                <div className="bg-blue-100 w-16 h-16 rounded-lg flex items-center justify-center mb-4">
-                  <service.icon className="w-8 h-8 text-blue-600" />
+              <div key={index} className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-kleinpeter-200 group">
+                <div className="bg-kleinpeter-100 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-kleinpeter-200 transition-colors">
+                  <service.icon className="w-10 h-10 text-kleinpeter-600" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">{service.title}</h3>
-                <p className="text-gray-600 mb-4">{service.description}</p>
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">{service.title}</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
                 <Link 
                   to={service.link}
-                  className="text-blue-600 hover:text-blue-700 font-semibold flex items-center space-x-2"
+                  className="text-kleinpeter-600 hover:text-kleinpeter-700 font-semibold flex items-center space-x-2 group-hover:translate-x-1 transition-transform"
                 >
                   <span>Learn More</span>
                   <ArrowRight className="w-4 h-4" />
@@ -128,95 +264,84 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Why Louisiana Homeowners Choose One Roof
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+              Why Louisiana Homeowners Choose Kleinpeter's Home Improvement
             </h2>
-            <p className="text-xl text-gray-600">
-              Over 15 years of experience protecting Louisiana homes from severe weather
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Your trusted local home improvement experts with honesty, integrity, and accountability
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="w-10 h-10 text-white" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {whyChooseUs.map((item, index) => (
+              <div key={index} className="text-center group">
+                <div className="bg-kleinpeter-600 w-24 h-24 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-kleinpeter-700 transition-colors shadow-lg">
+                  <item.icon className="w-12 h-12 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">{item.title}</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {item.description}
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">Licensed & Insured</h3>
-              <p className="text-gray-600">
-                Fully licensed Louisiana roofing contractor with comprehensive insurance coverage for your peace of mind.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Award className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">Fortified Roofing Certified</h3>
-              <p className="text-gray-600">
-                Official Fortified roofing installer - hurricane-resistant systems that reduce insurance premiums up to 35%.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Clock className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">24/7 Emergency Service</h3>
-              <p className="text-gray-600">
-                Storm damage doesn't wait - neither do we. Emergency roofing services available across our Louisiana service area.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
+
       {/* Service Areas Section */}
-      <section className="py-16 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
             Serving Louisiana Communities
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-            {['Baton Rouge', 'New Orleans', 'Covington', 'Gonzales', 'Hammond', 'Slidell', 'Mandeville'].map((city) => (
-              <div key={city} className="bg-blue-50 p-4 rounded-lg">
+          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+            Professional home improvement services throughout Louisiana. Contact us to confirm service availability in your area.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
+            {serviceAreas.map((city) => (
+              <div key={city} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+                <MapPin className="w-6 h-6 text-kleinpeter-600 mx-auto mb-3" />
                 <p className="font-semibold text-gray-800">{city}</p>
               </div>
             ))}
           </div>
-          <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
-            Professional roofing services throughout Louisiana. Contact us to confirm service availability in your area.
-          </p>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Customer Reviews Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              What Our Louisiana Customers Say
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+              Customer Reviews
             </h2>
-            <p className="text-xl text-gray-600">
-              Trusted by homeowners and businesses across Louisiana
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-lg">
-                <div className="flex items-center mb-4">
+              <div key={index} className="bg-white p-8 rounded-2xl shadow-sm flex flex-col items-center text-center">
+                <p className="font-bold text-black text-xl mb-1">{testimonial.name}, {testimonial.location}</p>
+                <p className="text-gray-500 text-base mb-4">{testimonial.date}</p>
+                <div className="flex justify-center gap-0.5 mb-6">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    <Star key={i} className="w-6 h-6 text-yellow-400 fill-yellow-400" />
                   ))}
                 </div>
-                <p className="text-gray-600 mb-4 italic">"{testimonial.text}"</p>
-                <div>
-                  <p className="font-semibold text-gray-800">{testimonial.name}</p>
-                  <p className="text-sm text-gray-500">{testimonial.location}</p>
-                </div>
+                <p className="text-black text-base leading-relaxed text-left w-full mb-6">"{testimonial.text}"</p>
+                {testimonial.showReviewButton && (
+                  <a
+                    href="https://www.google.com/search?q=Kleinpeter+Home+Improvement"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-700 transition-colors"
+                  >
+                    Review Us
+                  </a>
+                )}
               </div>
             ))}
           </div>
@@ -224,27 +349,27 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-blue-600 text-white">
+      <section className="py-14 bg-gray-700 text-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold mb-8">
                 Ready to Protect Your Louisiana Property?
               </h2>
-              <p className="text-xl mb-8">
-                Get your free roofing estimate today. We serve Baton Rouge, New Orleans, Covington, and surrounding Louisiana communities with expert roofing solutions.
+              <p className="text-xl mb-10 leading-relaxed">
+                Get your free estimate today. We serve Livingston Parish, Ascension Parish, East Baton Rouge Parish, and surrounding Louisiana communities with expert home improvement solutions.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-6">
                 <a 
-                  href="tel:+15551234567"
-                  className="bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors font-semibold text-center flex items-center justify-center space-x-2"
+                  href="tel:+12259759845"
+                  className="bg-white text-kleinpeter-600 px-10 py-4 rounded-lg hover:bg-gray-100 transition-all duration-300 font-bold text-lg text-center flex items-center justify-center space-x-3 shadow-lg hover:shadow-xl"
                 >
-                  <Phone className="w-5 h-5" />
-                  <span>Call (555) 123-ROOF</span>
+                  <Phone className="w-6 h-6" />
+                  <span>Call (225) 975-9845</span>
                 </a>
                 <Link 
                   to="/contact"
-                  className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white hover:text-blue-600 transition-colors font-semibold text-center"
+                  className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-lg hover:bg-white hover:text-kleinpeter-600 transition-all duration-300 font-bold text-lg text-center"
                 >
                   Online Estimate
                 </Link>
@@ -254,6 +379,7 @@ export default function Home() {
               <ContactForm 
                 title="Get Your Free Estimate"
                 subtitle="Fill out the form and we'll contact you within 24 hours"
+                darkMode={true}
               />
             </div>
           </div>

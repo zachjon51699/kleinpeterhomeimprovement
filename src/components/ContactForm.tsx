@@ -1,25 +1,52 @@
 import { useState } from 'react';
-import { Send } from 'lucide-react';
 
 interface ContactFormProps {
   title?: string;
   subtitle?: string;
+  darkMode?: boolean;
 }
 
-export default function ContactForm({ title = "Get Your Free Roofing Estimate", subtitle = "Fill out the form below and we'll contact you within 24 hours" }: ContactFormProps) {
+const inputBase = 'w-full px-4 py-3 border border-gray-300 rounded-lg bg-white';
+const inputDark = 'border-gray-400/40 bg-gray-500/20 text-white placeholder-gray-300';
+
+const FORM_NAME = 'contact';
+
+export default function ContactForm({ title = "Get Your Free Roofing Estimate", subtitle = "Fill out the form below and we'll contact you within 24 hours", darkMode = false }: ContactFormProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    service: '',
-    message: ''
+    message: '',
+    'bot-field': '' // honeypot for Netlify
   });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
-    console.log('Form submitted:', formData);
-    alert('Thank you! We will contact you within 24 hours.');
+    setStatus('sending');
+    try {
+      const payload = new URLSearchParams({
+        'form-name': FORM_NAME,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        'bot-field': formData['bot-field'],
+      });
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: payload,
+      });
+      if (res.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', phone: '', message: '', 'bot-field': '' });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -29,106 +56,112 @@ export default function ContactForm({ title = "Get Your Free Roofing Estimate", 
     }));
   };
 
+  const labelClass = darkMode ? 'text-white' : 'text-black';
+  const inputClass = darkMode ? `w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-kleinpeter-500 focus:border-kleinpeter-500 ${inputDark}` : `${inputBase} text-gray-900 placeholder-gray-500`;
+  const textareaClass = darkMode ? `w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-kleinpeter-500 focus:border-kleinpeter-500 resize-none ${inputDark}` : `${inputBase} text-gray-900 placeholder-gray-500 resize-none`;
+
   return (
-    <div className="bg-gray-50 p-8 rounded-xl">
-      <h3 className="text-2xl font-bold text-gray-800 mb-2">{title}</h3>
-      <p className="text-gray-600 mb-6">{subtitle}</p>
-      
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="space-y-4">
+      <form
+        name={FORM_NAME}
+        method="post"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        onSubmit={handleSubmit}
+        className="space-y-4"
+      >
+        <input type="hidden" name="form-name" value={FORM_NAME} />
+        {/* Honeypot - hidden from users, Netlify uses for spam */}
+        <p className="hidden">
+          <label>
+            Don’t fill this out: <input name="bot-field" value={formData['bot-field']} onChange={handleChange} />
+          </label>
+        </p>
+        {/* Row 1: Full Name + Phone (same layout as home) */}
+        <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-              Full Name *
+            <label className={`block text-sm font-medium ${labelClass} mb-2`} htmlFor="name">
+              Full Name
             </label>
             <input
               type="text"
               id="name"
               name="name"
+              maxLength={256}
               required
               value={formData.name}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="Your full name"
+              placeholder="Full Name"
+              className={inputClass}
             />
           </div>
-          
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-              Phone Number *
+            <label className={`block text-sm font-medium ${labelClass} mb-2`} htmlFor="phone">
+              Phone <span className="text-red-500">*</span>
             </label>
             <input
               type="tel"
               id="phone"
               name="phone"
+              maxLength={256}
               required
               value={formData.phone}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="(555) 123-4567"
+              placeholder="Phone"
+              className={inputClass}
             />
           </div>
         </div>
 
+        {/* Email */}
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-            Email Address *
+          <label className={`block text-sm font-medium ${labelClass} mb-2`} htmlFor="email">
+            Email <span className="text-red-500">*</span>
           </label>
           <input
             type="email"
             id="email"
             name="email"
+            maxLength={256}
             required
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="your@email.com"
+            placeholder="Email"
+            className={inputClass}
           />
         </div>
 
+        {/* Message */}
         <div>
-          <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-            Service Needed
-          </label>
-          <select
-            id="service"
-            name="service"
-            value={formData.service}
-            onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="">Select a service...</option>
-            <option value="roof-repair">Roof Repair</option>
-            <option value="roof-replacement">Roof Replacement</option>
-            <option value="storm-damage">Storm Damage Repair</option>
-            <option value="inspection">Roof Inspection</option>
-            <option value="residential">Residential Roofing</option>
-            <option value="commercial">Commercial Roofing</option>
-            <option value="fortified">Fortified Roofing</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-
-        <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-            Project Details
+          <label className={`block text-sm font-medium ${labelClass} mb-2`} htmlFor="message">
+            Short message about your needs <span className="text-red-500">*</span>
           </label>
           <textarea
             id="message"
             name="message"
+            maxLength={5000}
             rows={4}
+            required
             value={formData.message}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Tell us about your roofing project..."
+            placeholder="**Your message goes straight to my phone, I'll get back to you as soon as I'm available**"
+            className={textareaClass}
           />
         </div>
 
+        {status === 'success' && (
+          <p className="text-green-600 font-medium">Thank you! We will contact you within 24 hours.</p>
+        )}
+        {status === 'error' && (
+          <p className="text-red-600 font-medium">Something went wrong. Please try again or call (225) 975-9845.</p>
+        )}
+        {/* Submit Button (same as home: gray-800, "Submit") */}
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold flex items-center justify-center space-x-2"
+          disabled={status === 'sending'}
+          className="w-full bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-900 transition-colors font-semibold mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
         >
-          <span>Send Message</span>
-          <Send className="w-5 h-5" />
+          {status === 'sending' ? 'Sending...' : 'Submit'}
         </button>
       </form>
     </div>
