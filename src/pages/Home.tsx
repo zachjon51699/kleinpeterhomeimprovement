@@ -141,10 +141,10 @@ export default function Home() {
         canonical="https://www.kleinpeterhomeimprovements.com"
       />
 
-      {/* Hero Section - Full-screen carousel behind everything, form on right */}
-      <section className="relative min-h-[85vh] sm:min-h-[90vh] md:min-h-screen flex flex-col md:flex-row overflow-hidden">
-        {/* Full-screen background carousel (behind both left content and form) */}
-        <div className="absolute inset-0 z-0 min-w-0 min-h-0 flex items-center justify-center">
+      {/* Hero Section - Carousel visible; on mobile form is below, on desktop form is right with glass effect */}
+      <section className="relative min-h-0 md:min-h-screen flex flex-col md:flex-row overflow-hidden">
+        {/* Full-screen background carousel */}
+        <div className="absolute inset-0 z-0 min-w-0 min-h-0">
           {HERO_BACKGROUNDS.map((src, index) => (
             <img
               key={src}
@@ -160,15 +160,15 @@ export default function Home() {
             />
           ))}
         </div>
-        {/* Light overlay */}
-        <div className="absolute inset-0 z-[1] bg-black/20 pointer-events-none" aria-hidden="true" />
+        {/* Gradient overlay - stronger on right so form stays readable */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-transparent via-black/10 to-black/50 md:to-black/40 pointer-events-none" aria-hidden="true" />
 
-        {/* Left side - space for layout (carousel shows through) */}
-        <div className="flex-1 relative z-10 min-h-[50vh] md:min-h-screen min-w-0" />
+        {/* Mobile: carousel viewing area (no form on top) */}
+        <div className="relative z-10 min-h-[55vh] md:min-h-0 md:flex-1 md:min-h-screen w-full" aria-hidden="true" />
 
-        {/* Right Side - Contact Form (on top of carousel) */}
-        <div className="w-full md:w-1/2 lg:w-2/5 relative z-10 flex items-center justify-start min-h-0 md:min-h-screen px-4 py-8 md:py-0">
-            <div className="bg-gray-300 rounded-3xl p-8 w-full max-w-lg shadow-2xl">
+        {/* Form: below carousel on mobile, right side on desktop with glass style so image shows through */}
+        <div className="relative z-10 w-full md:w-[420px] lg:w-[440px] md:flex-shrink-0 flex items-center justify-center md:justify-end min-h-0 px-4 py-6 md:py-8 md:pr-8 lg:pr-12">
+            <div className="w-full max-w-lg rounded-3xl p-8 shadow-2xl bg-white/95 md:bg-white/90 backdrop-blur-sm border border-white/20">
               <h2 className="text-xl font-bold text-black text-center mb-6">
                 Kleinpeter Home Improvement & Home Maintenance
               </h2>
