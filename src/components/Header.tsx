@@ -69,14 +69,14 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          <Link to="/" className="flex items-center space-x-3">
+    <header className="bg-white shadow-md sticky top-0 z-50">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-16 lg:h-20">
+          <Link to="/" className="flex items-center min-w-0 flex-shrink-0">
             <img 
               src={`${import.meta.env.BASE_URL}kleinpeterlogo.png`} 
               alt="Kleinpeter's Home Improvement Logo" 
-              className="h-16 w-auto"
+              className="h-10 sm:h-12 lg:h-16 w-auto max-h-16"
             />
           </Link>
 
@@ -214,101 +214,105 @@ export default function Header() {
           </div>
 
           <button
-            className="lg:hidden p-2 text-black"
+            className="lg:hidden p-3 -mr-2 text-gray-800 hover:text-black hover:bg-gray-100 rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t">
-            <nav className="flex flex-col space-y-2">
-                  <Link
-                    to="/"
-                    className={`p-2 rounded-lg transition-colors ${
-                      location.pathname === '/'
-                        ? 'text-black bg-kleinpeter-50'
-                        : 'text-black hover:text-gray-700 hover:bg-gray-50'
-                    }`}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Home
-                  </Link>
-              
-              {/* Mobile Services Section */}
-              <div className="pt-2 border-t">
-                <div className="text-sm font-semibold text-gray-700 px-2 mb-2">Services</div>
-                {serviceItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    className={`p-2 pl-4 rounded-lg transition-colors ${
-                      location.pathname === item.path
-                        ? 'text-black bg-kleinpeter-50'
-                        : 'text-black hover:text-gray-700 hover:bg-gray-50'
-                    }`}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+          <div className="lg:hidden border-t border-gray-200 bg-gray-50/80">
+            <nav className="flex flex-col py-3 px-1 max-h-[calc(100vh-5rem)] overflow-y-auto">
+              <Link
+                to="/"
+                className={`py-3 px-4 rounded-lg text-base font-medium transition-colors ${
+                  location.pathname === '/'
+                    ? 'text-black bg-white shadow-sm'
+                    : 'text-gray-800 hover:bg-white hover:shadow-sm'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Home
+              </Link>
+
+              <div className="pt-3 mt-1 border-t border-gray-200">
+                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-4 py-2">Services</div>
+                <div className="flex flex-col gap-0.5">
+                  {serviceItems.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className={`py-3 px-4 rounded-lg text-base transition-colors ${
+                        location.pathname === item.path
+                          ? 'text-black bg-white shadow-sm font-medium'
+                          : 'text-gray-800 hover:bg-white hover:shadow-sm'
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
 
               <Link
                 to="/gallery"
-                className={`p-2 rounded-lg transition-colors ${
+                className={`py-3 px-4 rounded-lg text-base font-medium transition-colors ${
                   location.pathname === '/gallery'
-                    ? 'text-black bg-kleinpeter-50'
-                    : 'text-black hover:text-gray-700 hover:bg-gray-50'
+                    ? 'text-black bg-white shadow-sm'
+                    : 'text-gray-800 hover:bg-white hover:shadow-sm'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Gallery
               </Link>
 
-              {/* Mobile Service Areas Section */}
-              <div className="pt-2 border-t">
-                <div className="text-sm font-semibold text-gray-700 px-2 mb-2">Service Areas</div>
-                {locationItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    className={`p-2 pl-4 rounded-lg transition-colors ${
-                      location.pathname === item.path
-                        ? 'text-black bg-kleinpeter-50'
-                        : 'text-black hover:text-gray-700 hover:bg-gray-50'
-                    }`}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+              <div className="pt-3 mt-1 border-t border-gray-200">
+                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-4 py-2">Service Areas</div>
+                <div className="flex flex-col gap-0.5">
+                  {locationItems.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className={`py-3 px-4 rounded-lg text-base transition-colors ${
+                        location.pathname === item.path
+                          ? 'text-black bg-white shadow-sm font-medium'
+                          : 'text-gray-800 hover:bg-white hover:shadow-sm'
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
-              
+
               <Link
                 to="/contact"
-                className={`p-2 rounded-lg transition-colors ${
+                className={`py-3 px-4 rounded-lg text-base font-medium transition-colors mt-1 ${
                   location.pathname === '/contact'
-                    ? 'text-black bg-kleinpeter-50'
-                    : 'text-black hover:text-gray-700 hover:bg-gray-50'
+                    ? 'text-black bg-white shadow-sm'
+                    : 'text-gray-800 hover:bg-white hover:shadow-sm'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </Link>
 
-              <div className="pt-4 border-t">
+              <div className="pt-4 mt-3 border-t border-gray-200 space-y-2">
                 <a
                   href="tel:+12259759845"
-                  className="flex items-center space-x-2 p-2 text-black hover:text-gray-700 font-semibold"
+                  className="flex items-center justify-center gap-2 py-3 px-4 text-gray-800 font-semibold rounded-lg bg-white shadow-sm hover:shadow"
                 >
-                  <Phone className="w-5 h-5" />
+                  <Phone className="w-5 h-5 flex-shrink-0" />
                   <span>(225) 975-9845</span>
                 </a>
                 <Link
                   to="/contact"
-                  className="block mt-2 bg-kleinpeter-600 text-white px-4 py-2 rounded-lg hover:bg-kleinpeter-700 transition-colors font-semibold text-center"
+                  className="block bg-kleinpeter-600 text-white py-3 px-4 rounded-lg hover:bg-kleinpeter-700 transition-colors font-semibold text-center"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Free Estimate
                 </Link>
@@ -319,4 +323,4 @@ export default function Header() {
       </div>
     </header>
   );
-}// Cache bust: 1770561190
+}
