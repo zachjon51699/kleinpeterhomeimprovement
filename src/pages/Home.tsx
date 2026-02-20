@@ -166,8 +166,8 @@ export default function Home() {
         {/* Mobile: image area only (form is next in column, below) */}
         <div className="relative z-10 min-h-[65vh] md:min-h-0 md:flex-1 md:min-h-screen w-full flex-shrink-0" aria-hidden="true" />
 
-        {/* Form: below carousel on mobile, right side on desktop with glass style so image shows through */}
-        <div className="relative z-10 w-full md:w-[420px] lg:w-[440px] md:flex-shrink-0 flex items-center justify-center md:justify-end min-h-0 px-4 py-6 md:py-8 md:pr-8 lg:pr-12">
+        {/* Form: below carousel on mobile (no gap), right side on desktop with glass style so image shows through */}
+        <div className="relative z-10 w-full md:w-[420px] lg:w-[440px] md:flex-shrink-0 flex items-center justify-center md:justify-end min-h-0 px-4 pt-0 pb-6 md:py-8 md:pr-8 lg:pr-12">
             <div className="w-full max-w-lg rounded-3xl p-8 shadow-2xl bg-white/95 md:bg-white/90 backdrop-blur-sm border border-white/20">
               <h2 className="text-xl font-bold text-black text-center mb-6">
                 Kleinpeter Home Improvement & Home Maintenance
