@@ -100,5 +100,6 @@ export const SERVICE_GALLERY_IMAGES: Record<string, { folder: string; files: str
 export function getServiceGalleryUrls(serviceKey: keyof typeof SERVICE_GALLERY_IMAGES): string[] {
   const config = SERVICE_GALLERY_IMAGES[serviceKey];
   if (!config) return [];
-  return config.files.map((f) => `/${encodeURI(config.folder)}/${encodeURI(f)}`);
+  const base = typeof import.meta !== 'undefined' && import.meta.env ? import.meta.env.BASE_URL : '/';
+  return config.files.map((f) => `${base}${encodeURI(config.folder)}/${encodeURI(f)}`);
 }

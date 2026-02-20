@@ -58,7 +58,7 @@ export default function Decks() {
       <section 
         className="relative bg-cover bg-center bg-gray-800 text-white py-16 lg:py-20"
         style={{
-          backgroundImage: 'linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url("/deck%20installation%20main.jpg")'
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url("${import.meta.env.BASE_URL}deck%20installation%20main.jpg")`
         }}
       >
         <div className="container mx-auto px-4">

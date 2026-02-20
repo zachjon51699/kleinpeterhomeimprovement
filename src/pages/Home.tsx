@@ -5,10 +5,10 @@ import ContactForm from '../components/ContactForm';
 import SEO from '../components/SEO';
 
 const HERO_BACKGROUNDS = [
-  '/Main Background Image 1.avif',
-  '/Main Background Image 2.avif',
-  '/Main Background Image 3.avif',
-  '/Main Background Image 4.avif'
+  `${import.meta.env.BASE_URL}Main Background Image 1.avif`,
+  `${import.meta.env.BASE_URL}Main Background Image 2.avif`,
+  `${import.meta.env.BASE_URL}Main Background Image 3.avif`,
+  `${import.meta.env.BASE_URL}Main Background Image 4.avif`
 ];
 
 export default function Home() {

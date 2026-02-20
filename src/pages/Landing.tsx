@@ -50,7 +50,7 @@ export default function Landing() {
           {/* Logo */}
           <div className="mb-4">
             <img 
-              src="/kleinpeterlogo.png" 
+              src={`${import.meta.env.BASE_URL}kleinpeterlogo.png`} 
               alt="One Roof Louisiana" 
               className="h-16 mx-auto"
             />
@@ -307,7 +307,7 @@ export default function Landing() {
           <div className="grid grid-cols-2 gap-3 mb-8">
             <div className="rounded-lg overflow-hidden shadow-lg">
               <img 
-                src="/image1.png"
+                src={`${import.meta.env.BASE_URL}image1.png`}
                 alt="One Roof roofing project showcasing expert craftsmanship"
                 className="w-full h-64 object-cover"
                 loading="lazy"
@@ -315,7 +315,7 @@ export default function Landing() {
             </div>
             <div className="rounded-lg overflow-hidden shadow-lg">
               <img 
-                src="/image2.png"
+                src={`${import.meta.env.BASE_URL}image2.png`}
                 alt="Professional roofing work demonstrating quality and attention to detail"
                 className="w-full h-64 object-cover"
                 loading="lazy"
@@ -418,7 +418,7 @@ export default function Landing() {
             <div>
               <div className="rounded-lg overflow-hidden shadow-lg">
                 <img 
-                  src="/WhyChooseOneRoof.png"
+                  src={`${import.meta.env.BASE_URL}WhyChooseOneRoof.png`}
                   alt="Professional residential roof with brown asphalt shingles showing expert craftsmanship"
                   className="w-full h-auto"
                 />
@@ -437,7 +437,7 @@ export default function Landing() {
               <div>
                 <div className="rounded-lg overflow-hidden shadow-xl">
                   <img 
-                    src="/DontWaituntilitstoolate.png"
+                    src={`${import.meta.env.BASE_URL}DontWaituntilitstoolate.png`}
                     alt="Professional roofing team working on residential roof repair"
                     className="w-full h-auto"
                   />

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { X, ArrowLeft, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
 import { getImageCategories } from '../data/galleryCategories';
@@ -29,7 +30,7 @@ export default function Gallery() {
       images.push({
         title: `${projectLabel} - ${location}`,
         description: `Professional ${projectLabel.toLowerCase()} completed in ${location}, showcasing quality craftsmanship and attention to detail.`,
-        image: `/image${num}.avif`,
+        image: `${import.meta.env.BASE_URL}image${num}.avif`,
         category,
         location
       });
@@ -134,7 +135,7 @@ export default function Gallery() {
                       loading="lazy"
                       onError={(e) => {
                         console.error(`Failed to load image: ${project.image}`);
-                        (e.target as HTMLImageElement).src = '/image1.avif'; // Fallback
+                        (e.target as HTMLImageElement).src = `${import.meta.env.BASE_URL}image1.avif`; // Fallback
                       }}
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
@@ -206,7 +207,7 @@ export default function Gallery() {
                 className="w-full h-96 object-cover"
                 onError={(e) => {
                   console.error(`Failed to load image: ${filteredProjects[selectedImage].image}`);
-                  (e.target as HTMLImageElement).src = '/image1.avif'; // Fallback
+                  (e.target as HTMLImageElement).src = `${import.meta.env.BASE_URL}image1.avif`; // Fallback
                 }}
               />
               <div className="p-6">
@@ -282,12 +283,12 @@ export default function Gallery() {
             >
               <span>Call (225) 975-9845</span>
             </a>
-            <a 
-              href="/contact"
+            <Link 
+              to="/contact"
               className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white hover:text-kleinpeter-600 transition-colors font-semibold"
             >
               Get Free Estimate
-            </a>
+            </Link>
           </div>
           <p className="text-lg mt-6">
             Serving Livingston Parish, Ascension Parish, East Baton Rouge Parish, and all Louisiana communities.

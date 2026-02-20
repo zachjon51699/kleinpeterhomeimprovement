@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
 const HERO_BACKGROUNDS = [
-  '/Main Background Image 1.avif',
-  '/Main Background Image 2.avif',
-  '/Main Background Image 3.avif',
-  '/Main Background Image 4.avif'
+  `${import.meta.env.BASE_URL}Main Background Image 1.avif`,
+  `${import.meta.env.BASE_URL}Main Background Image 2.avif`,
+  `${import.meta.env.BASE_URL}Main Background Image 3.avif`,
+  `${import.meta.env.BASE_URL}Main Background Image 4.avif`
 ];
 
 interface HeroCarouselProps {
@@ -30,7 +30,7 @@ export default function HeroCarousel({ children, className = '' }: HeroCarouselP
         {HERO_BACKGROUNDS.map((src, index) => (
           <img
             key={src}
-            src={encodeURI(src)}
+            src={src}
             alt=""
             className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
             style={{

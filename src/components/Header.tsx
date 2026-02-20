@@ -74,7 +74,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center space-x-3">
             <img 
-              src="/kleinpeterlogo.png" 
+              src={`${import.meta.env.BASE_URL}kleinpeterlogo.png`} 
               alt="Kleinpeter's Home Improvement Logo" 
               className="h-16 w-auto"
             />

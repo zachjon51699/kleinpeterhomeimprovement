@@ -58,7 +58,7 @@ export default function Fence() {
       <section 
         className="relative bg-cover bg-center bg-gray-900 text-white py-16 lg:py-20"
         style={{
-          backgroundImage: 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/Fence%20Installation.avif")'
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("${import.meta.env.BASE_URL}Fence%20Installation.avif")`
         }}
       >
         <div className="container mx-auto px-4">
