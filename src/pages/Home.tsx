@@ -142,15 +142,15 @@ export default function Home() {
       />
 
       {/* Hero Section - Full-screen carousel behind everything, form on right */}
-      <section className="relative min-h-screen flex flex-col md:flex-row overflow-hidden">
+      <section className="relative min-h-[85vh] sm:min-h-[90vh] md:min-h-screen flex flex-col md:flex-row overflow-hidden">
         {/* Full-screen background carousel (behind both left content and form) */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 min-w-0 min-h-0">
           {HERO_BACKGROUNDS.map((src, index) => (
             <img
               key={src}
               src={encodeURI(src)}
               alt=""
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
+              className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out"
               style={{
                 opacity: index === heroIndex ? 1 : 0,
                 zIndex: index === heroIndex ? 0 : -1,
@@ -164,10 +164,10 @@ export default function Home() {
         <div className="absolute inset-0 z-[1] bg-black/20 pointer-events-none" aria-hidden="true" />
 
         {/* Left side - space for layout (carousel shows through) */}
-        <div className="flex-1 relative z-10 min-h-screen" />
+        <div className="flex-1 relative z-10 min-h-[50vh] md:min-h-screen min-w-0" />
 
         {/* Right Side - Contact Form (on top of carousel) */}
-        <div className="w-full md:w-1/2 lg:w-2/5 relative z-10 flex items-center justify-start min-h-screen px-4">
+        <div className="w-full md:w-1/2 lg:w-2/5 relative z-10 flex items-center justify-start min-h-0 md:min-h-screen px-4 py-8 md:py-0">
             <div className="bg-gray-300 rounded-3xl p-8 w-full max-w-lg shadow-2xl">
               <h2 className="text-xl font-bold text-black text-center mb-6">
                 Kleinpeter Home Improvement & Home Maintenance

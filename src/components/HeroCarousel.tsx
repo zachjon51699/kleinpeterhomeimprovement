@@ -24,15 +24,15 @@ export default function HeroCarousel({ children, className = '' }: HeroCarouselP
   }, []);
 
   return (
-    <section className={`relative overflow-hidden text-white ${className}`}>
+    <section className={`relative overflow-hidden text-white min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] ${className}`}>
       {/* Background carousel */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 min-w-0 min-h-0">
         {HERO_BACKGROUNDS.map((src, index) => (
           <img
             key={src}
             src={src}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
+            className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out"
             style={{
               opacity: index === heroIndex ? 1 : 0,
               zIndex: index === heroIndex ? 0 : -1,

@@ -131,7 +131,7 @@ export default function Gallery() {
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-48 sm:h-56 md:h-64 object-cover object-center group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
                       onError={(e) => {
                         console.error(`Failed to load image: ${project.image}`);
@@ -204,7 +204,7 @@ export default function Gallery() {
               <img
                 src={filteredProjects[selectedImage].image}
                 alt={filteredProjects[selectedImage].title}
-                className="w-full h-96 object-cover"
+                className="w-full h-64 sm:h-80 md:h-96 object-cover object-center max-h-[70vh]"
                 onError={(e) => {
                   console.error(`Failed to load image: ${filteredProjects[selectedImage].image}`);
                   (e.target as HTMLImageElement).src = `${import.meta.env.BASE_URL}image1.avif`; // Fallback

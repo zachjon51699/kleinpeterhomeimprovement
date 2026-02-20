@@ -30,7 +30,7 @@ export default function ServiceGallery({ images, title = 'Our Work', subtitle }:
 
         {/* Contained carousel */}
         <div className="relative w-full max-w-6xl mx-auto rounded-2xl overflow-hidden shadow-xl">
-        <div className="relative w-full aspect-[2/1] min-h-[260px] max-h-[420px] md:min-h-[320px] bg-gray-100">
+        <div className="relative w-full aspect-[4/3] sm:aspect-[3/2] md:aspect-[2/1] min-h-[220px] sm:min-h-[260px] md:min-h-[320px] max-h-[50vh] md:max-h-[420px] bg-gray-100">
           {images.map((src, i) => (
             <div
               key={i}
@@ -44,7 +44,7 @@ export default function ServiceGallery({ images, title = 'Our Work', subtitle }:
               <img
                 src={src}
                 alt=""
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
                 loading={i === 0 ? 'eager' : 'lazy'}
                 style={{
                   imageRendering: 'high-quality',

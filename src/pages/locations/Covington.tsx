@@ -39,7 +39,7 @@ export default function Covington() {
       />
 
       {/* Hero Section */}
-      <HeroCarousel className="min-h-[600px] flex items-center">
+      <HeroCarousel className="min-h-[50vh] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center">
         <div className="container mx-auto px-4 relative z-10 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Side - Content */}

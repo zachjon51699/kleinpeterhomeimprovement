@@ -56,18 +56,18 @@ export default function PressureWashing() {
 
       {/* Hero Section */}
       <section 
-        className="relative bg-cover bg-center bg-gray-900 text-white py-16 lg:py-20"
+        className="relative bg-cover bg-center bg-gray-900 text-white min-h-[280px] sm:min-h-[340px] md:min-h-[400px] py-10 sm:py-14 md:py-16 lg:py-20"
         style={{
           backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("${import.meta.env.BASE_URL}Pressure%20Washing.avif")`
         }}
       >
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 md:mb-8 leading-tight">
               Pressure Washing in Baton Rouge<br />
               <span className="text-white">& Surrounding Parishes</span>
             </h1>
-            <p className="text-xl md:text-2xl leading-relaxed mb-12 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed mb-8 sm:mb-10 md:mb-12 max-w-3xl mx-auto">
               Restore and maintain your Louisiana property with professional pressure washing services. From houses to driveways, we provide comprehensive cleaning solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">

@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/kleinpeterhomeimprovement/' : '/', // GitHub Pages subpath in production
+  base: process.env.VITE_BASE_URL || (process.env.NODE_ENV === 'production' ? '/kleinpeterhomeimprovement/' : '/'), // GitHub Pages: set VITE_BASE_URL in workflow
   plugins: [react()],
   server: {
     port: 5174,
