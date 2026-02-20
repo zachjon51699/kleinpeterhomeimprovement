@@ -144,13 +144,13 @@ export default function Home() {
       {/* Hero Section - Full-screen carousel behind everything, form on right */}
       <section className="relative min-h-[85vh] sm:min-h-[90vh] md:min-h-screen flex flex-col md:flex-row overflow-hidden">
         {/* Full-screen background carousel (behind both left content and form) */}
-        <div className="absolute inset-0 z-0 min-w-0 min-h-0">
+        <div className="absolute inset-0 z-0 min-w-0 min-h-0 flex items-center justify-center">
           {HERO_BACKGROUNDS.map((src, index) => (
             <img
               key={src}
               src={encodeURI(src)}
               alt=""
-              className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out"
+              className="absolute inset-0 w-full h-full min-w-full min-h-full object-cover object-top sm:object-center transition-opacity duration-1000 ease-in-out"
               style={{
                 opacity: index === heroIndex ? 1 : 0,
                 zIndex: index === heroIndex ? 0 : -1,
